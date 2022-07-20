@@ -17,6 +17,8 @@ pickBtn.forEach((btn)=>{
 
         results = playRound(btn.className,getComputerChoice());
 
+        btn.classList.add('clicked');
+
         switch(results[1]){
             case 1:
                 playerScore ++;
@@ -74,4 +76,13 @@ function playRound(playerSelection , computerSelection){
     }
     
     return [message,winner];
+}
+
+pickBtn.forEach((btn)=>{
+  btn.addEventListener('transitionend',removeTransition);
+});
+
+function removeTransition(e){
+  if(e.propertyName !== 'transform') return;
+  this.classList.remove('clicked');
 }
